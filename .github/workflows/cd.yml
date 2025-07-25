@@ -11,16 +11,14 @@ jobs:
     timeout-minutes: 10
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up GO
         uses: actions/setup-go@v5
         with:
           go-version-file: "go.mod"
           cache: true
-
-      - name: Checkout repository and submodules
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Build image
         run: ./scripts/buildprod.sh
